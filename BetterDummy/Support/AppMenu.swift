@@ -271,17 +271,17 @@ class AppMenu {
     attributedHeader.append(NSAttributedString(string: " (\(dummy.getSerialNumber()))", attributes: attrs))
     dummyHeaderItem.attributedTitle = attributedHeader
     self.appMenu.addItem(dummyHeaderItem)
+    self.appMenu.addItem(self.getAssociateSubmenuItem(dummy, number))
     if dummy.isConnected, let resolutionSubmenuItem = self.getResolutionSubmenuItem(dummy, number) {
       self.appMenu.addItem(resolutionSubmenuItem)
     }
-    self.appMenu.addItem(self.checkmarkedMenuItem(checked: dummy.isConnected, label: "Connected\(dummy.hasAssociatedDisplay() && !prefs.bool(forKey: PrefKey.disableEnforceAssociatedConnect.rawValue) ? " (automatic)" : "")", tag: number, selector: #selector(app.connectDisconnectDummy)))
     if dummy.isConnected, !prefs.bool(forKey: PrefKey.hideLowResolutionOption.rawValue), !prefs.bool(forKey: PrefKey.useMenuForResolution.rawValue), let display = DisplayManager.getDisplayById(dummy.displayIdentifier) {
       self.appMenu.addItem(self.checkmarkedMenuItem(checked: !display.isHiDPI, label: "Low resolution mode", tag: number, selector: #selector(app.lowResolution)))
     }
+    self.appMenu.addItem(self.checkmarkedMenuItem(checked: dummy.isConnected, label: "Connected\(dummy.hasAssociatedDisplay() && !prefs.bool(forKey: PrefKey.disableEnforceAssociatedConnect.rawValue) ? " (automatic)" : "")", tag: number, selector: #selector(app.connectDisconnectDummy)))
     if !prefs.bool(forKey: PrefKey.hidePortraitOption.rawValue), dummy.dummyDefinition.aspectWidth != dummy.dummyDefinition.aspectHeight {
       self.appMenu.addItem(self.checkmarkedMenuItem(checked: dummy.isPortrait, label: "Portrait\(dummy.hasAssociatedDisplay() && !prefs.bool(forKey: PrefKey.disableEnforceAssociatedOrientation.rawValue) ? " (automatic)" : "")", tag: number, selector: #selector(app.portrait)))
     }
-    self.appMenu.addItem(self.getAssociateSubmenuItem(dummy, number))
     let deleteItem = NSMenuItem(title: "Discard dummy", action: #selector(app.discardDummy(_:)), keyEquivalent: "")
     deleteItem.image = NSImage(systemSymbolName: "exclamationmark.triangle", accessibilityDescription: "icon")
     deleteItem.tag = number

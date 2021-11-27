@@ -358,7 +358,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
       self.reconfigureID = 0
       DisplayManager.configureDisplays()
       DisplayManager.addDisplayCounterSuffixes()
+      DummyManager.updateOrientationOfAssociatedDummies()
       DummyManager.connectDisconnectAssociatedDummies()
+      DummyManager.updateMirroringForAssociatedDummies()
       self.menu.populateAppMenu()
       DummyManager.storeDummiesToPrefs()
     }
@@ -506,8 +508,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
       NSWorkspace.shared.open(url)
     }
     let alert = NSAlert()
-    alert.messageText = "Thank you for your generousity!"
-    alert.informativeText = "If you find this app useful, please support the developer with your donation:\n\nopencollective.com/betterdummy\n\nWe opened the page for you in your browser. :)"
+    alert.messageText = "Hi, @waydabber here!"
+    alert.informativeText = "If you find this app useful, please support my work with your donation:\n\nopencollective.com/betterdummy\n\nThe page was opened for you in a new browser tab. Thank you! :)"
     alert.runModal()
   }
 
@@ -521,7 +523,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
     os_log("Wake intercepted, removed temporary display if present.", type: .info)
     self.isSleep = false
     if prefs.bool(forKey: PrefKey.reconnectAfterSleep.rawValue) {
-      DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
         if !self.isSleep {
           os_log("Delayed reconnecting dummies after wake.", type: .info)
           for dummy in DummyManager.getDummies() where !dummy.isConnected {

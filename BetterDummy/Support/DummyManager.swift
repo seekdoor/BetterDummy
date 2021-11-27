@@ -61,6 +61,12 @@ class DummyManager {
     self.definedDummies.count
   }
 
+  static func updateOrientationOfAssociatedDummies() {
+    if !prefs.bool(forKey: PrefKey.disableEnforceAssociatedOrientation.rawValue) {
+      // TODO: Update orientation information for associated dummies which has displays present.
+    }
+  }
+  
   static func connectDisconnectAssociatedDummies() {
     for dummy in self.getDummies() {
       if dummy.hasAssociatedDisplay(), !prefs.bool(forKey: PrefKey.disableEnforceAssociatedConnect.rawValue) {
@@ -76,6 +82,12 @@ class DummyManager {
           }
         }
       }
+    }
+  }
+  
+  static func updateMirroringForAssociatedDummies() {
+    if !prefs.bool(forKey: PrefKey.disableEnforceAssociatedMirror.rawValue) {
+      // TODO: Fix broken mirrors for associated dummies which has displays present.
     }
   }
 
