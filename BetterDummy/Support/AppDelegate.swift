@@ -336,6 +336,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
     }
   }
 
+  @objc func showDummyPIPWindow(_ sender: AnyObject?) {
+    if let menuItem = sender as? NSMenuItem, let dummy = DummyManager.getDummyByNumber(menuItem.tag) {
+      // TODO: Create PIP window and initialize streamer
+    }
+  }
+
   // MARK: *** Handlers - Display reconfiguration
 
   @objc func displayReconfiguration(dispatchedReconfigureID: Int = 0, force: Bool = false) {

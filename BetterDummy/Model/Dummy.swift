@@ -40,8 +40,8 @@ class Dummy: Equatable {
     "Dummy \(self.dummyDefinition.description.components(separatedBy: " ").first ?? self.dummyDefinition.description)"
   }
 
-  func getMenuItemTitle() -> String {
-    "\(self.dummyDefinition.description.components(separatedBy: " ").first ?? "") - #\(String(format: "%02X", self.serialNum))"
+  func getTitle() -> String {
+    "\(self.dummyDefinition.description.components(separatedBy: " ").first ?? "") (\(String(format: "%02X", self.serialNum)))"
   }
 
   func getSerialNumber() -> String {

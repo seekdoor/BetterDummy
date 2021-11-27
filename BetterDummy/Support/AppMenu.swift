@@ -89,7 +89,7 @@ class AppMenu {
     self.settingsMenu.addItem(NSMenuItem.separator())
 
     let associatedHeaderItem = NSMenuItem()
-    associatedHeaderItem.attributedTitle = NSAttributedString(string: "Associated dummies", attributes: attrs)
+    associatedHeaderItem.attributedTitle = NSAttributedString(string: "Disply associated dummies", attributes: attrs)
     self.settingsMenu.addItem(associatedHeaderItem)
 
     self.settingsMenu.addItem(self.checkmarkedMenuItem(checked: !prefs.bool(forKey: PrefKey.disableEnforceAssociatedConnect.rawValue), label: "Auto-connect/disconnect dummy", selector: #selector(app.disableEnforceAssociatedConnect)))
@@ -271,7 +271,6 @@ class AppMenu {
     attributedHeader.append(NSAttributedString(string: " (\(dummy.getSerialNumber()))", attributes: attrs))
     dummyHeaderItem.attributedTitle = attributedHeader
     self.appMenu.addItem(dummyHeaderItem)
-    self.appMenu.addItem(self.getAssociateSubmenuItem(dummy, number))
     if dummy.isConnected, let resolutionSubmenuItem = self.getResolutionSubmenuItem(dummy, number) {
       self.appMenu.addItem(resolutionSubmenuItem)
     }
@@ -282,6 +281,13 @@ class AppMenu {
     if !prefs.bool(forKey: PrefKey.hidePortraitOption.rawValue), dummy.dummyDefinition.aspectWidth != dummy.dummyDefinition.aspectHeight {
       self.appMenu.addItem(self.checkmarkedMenuItem(checked: dummy.isPortrait, label: "Portrait\(dummy.hasAssociatedDisplay() && !prefs.bool(forKey: PrefKey.disableEnforceAssociatedOrientation.rawValue) ? " (automatic)" : "")", tag: number, selector: #selector(app.portrait)))
     }
+    if dummy.isConnected {
+      let stremerWindowItem = NSMenuItem(title: "Show dummy PIP window", action: #selector(app.showDummyPIPWindow(_:)), keyEquivalent: "")
+      stremerWindowItem.image = NSImage(systemSymbolName: "macwindow", accessibilityDescription: "icon")
+      stremerWindowItem.tag = number
+      self.appMenu.addItem(stremerWindowItem)
+    }
+    self.appMenu.addItem(self.getAssociateSubmenuItem(dummy, number))
     let deleteItem = NSMenuItem(title: "Discard dummy", action: #selector(app.discardDummy(_:)), keyEquivalent: "")
     deleteItem.image = NSImage(systemSymbolName: "exclamationmark.triangle", accessibilityDescription: "icon")
     deleteItem.tag = number
