@@ -33,6 +33,7 @@
 		AAA2D68A272BFC7E00F71CF0 /* BetterDummyHelper.app in Copy Helper to start at Login */ = {isa = PBXBuildFile; fileRef = AAA2D673272BF77200F71CF0 /* BetterDummyHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AAC810B92747C87D004CCBA0 /* BetterSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC810B82747C87D004CCBA0 /* BetterSlider.swift */; };
 		AACBDF4827308B060087638C /* DisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACBDF4727308B060087638C /* DisplayManager.swift */; };
+		AADFBAC22752F757007E29C9 /* PipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADFBAC12752F757007E29C9 /* PipViewController.swift */; };
 		AAE09F3C274576F900A03416 /* ResolutionSliderHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE09F3B274576F900A03416 /* ResolutionSliderHandler.swift */; };
 		BEB26A432530B2F600744C86 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB26A422530B2F600744C86 /* main.swift */; };
 		BEB26A472530B2F700744C86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEB26A462530B2F700744C86 /* Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		AAA2D682272BF86800F71CF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AAC810B82747C87D004CCBA0 /* BetterSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterSlider.swift; sourceTree = "<group>"; };
 		AACBDF4727308B060087638C /* DisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayManager.swift; sourceTree = "<group>"; };
+		AADFBAC12752F757007E29C9 /* PipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipViewController.swift; sourceTree = "<group>"; };
 		AAE09F3B274576F900A03416 /* ResolutionSliderHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolutionSliderHandler.swift; sourceTree = "<group>"; };
 		BEB26A3F2530B2F600744C86 /* BetterDummy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BetterDummy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB26A422530B2F600744C86 /* main.swift */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				AA162C2E272C69F5003CFC89 /* UpdaterDelegate.swift */,
 				AAE09F3B274576F900A03416 /* ResolutionSliderHandler.swift */,
 				AAC810B82747C87D004CCBA0 /* BetterSlider.swift */,
+				AADFBAC12752F757007E29C9 /* PipViewController.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				AA457C642736E1B2002018C1 /* NSScreen+Extension.swift in Sources */,
 				AAC810B92747C87D004CCBA0 /* BetterSlider.swift in Sources */,
 				AA964A8C2729C67F0064F7C7 /* PrefKey.swift in Sources */,
+				AADFBAC22752F757007E29C9 /* PipViewController.swift in Sources */,
 				AACBDF4827308B060087638C /* DisplayManager.swift in Sources */,
 				AA457C622736DC8A002018C1 /* Display.swift in Sources */,
 				AA59EAB52728911900B7C833 /* DummyDefinition.swift in Sources */,

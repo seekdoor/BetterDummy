@@ -18,6 +18,7 @@ class Dummy: Equatable {
   var associatedDisplayPrefsId: String = ""
   var associatedDisplayName: String = ""
   var displayIdentifier: CGDirectDisplayID = 0 // This contains valid info only if the display is connected
+  var pipWindow: NSWindow?
 
   static func == (lhs: Dummy, rhs: Dummy) -> Bool {
     lhs.serialNum == rhs.serialNum
@@ -68,6 +69,34 @@ class Dummy: Equatable {
       os_log("Failed to connect display %{public}@", type: .info, "\(name)")
       return false
     }
+  }
+
+  func showPIP() {
+    guard self.isConnected, self.pipWindow == nil else {
+      self.pipWindow?.makeKeyAndOrderFront(nil)
+      return
+    }
+    let pip = NSWindow(contentRect: NSRect(origin: .zero, size: .zero), styleMask: [.closable, .titled, .miniaturizable, .resizable], backing: .buffered, defer: true)
+    pip.aspectRatio = NSSize(width: self.isPortrait ? self.dummyDefinition.aspectHeight : self.dummyDefinition.aspectWidth, height: self.isPortrait ? self.dummyDefinition.aspectWidth : self.dummyDefinition.aspectHeight)
+    pip.hasShadow = true
+    pip.isMovableByWindowBackground = true
+    pip.title = self.getTitle()
+    pip.collectionBehavior = [.fullScreenPrimary, .fullScreenAllowsTiling, .managed]
+    let pipViewController = PipViewController()
+    pipViewController.displayId = self.displayIdentifier
+    pipViewController.width = 720
+    pipViewController.height = 720
+    pipViewController.outputWidth = Int(DisplayManager.getDisplayById(self.displayIdentifier)?.pixelWidth ?? 720)
+    pipViewController.outputHeight = Int(DisplayManager.getDisplayById(self.displayIdentifier)?.pixelHeight ?? 720)
+    pip.contentViewController = pipViewController
+    let pipcontroller = NSWindowController()
+    pipcontroller.contentViewController = pip.contentViewController
+    pipcontroller.window = pip
+    pip.level = .modalPanel
+    pip.makeKeyAndOrderFront(nil)
+    pip.center()
+    pipcontroller.showWindow(self)
+    self.pipWindow = pip
   }
 
   func associateDisplay(display: Display) {
