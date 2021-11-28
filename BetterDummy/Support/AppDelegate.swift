@@ -338,7 +338,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, SPUUpdaterDelegate {
 
   @objc func showDummyPIPWindow(_ sender: AnyObject?) {
     if let menuItem = sender as? NSMenuItem, let dummy = DummyManager.getDummyByNumber(menuItem.tag) {
-      dummy.showPIP()
+      dummy.showPipWindow()
     }
   }
 

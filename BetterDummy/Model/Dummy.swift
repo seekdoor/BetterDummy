@@ -71,7 +71,7 @@ class Dummy: Equatable {
     }
   }
 
-  func showPIP() {
+  func showPipWindow() {
     guard self.isConnected, self.pipWindow == nil else {
       self.pipWindow?.makeKeyAndOrderFront(nil)
       return
@@ -99,6 +99,14 @@ class Dummy: Equatable {
     self.pipWindow = pip
   }
 
+  func updatePipWindow() {
+    // TODO: Update PIP window size and resolution if needed
+  }
+
+  func destroyPipWindow() {
+    // TODO: Destroy PIP window when needed
+  }
+  
   func associateDisplay(display: Display) {
     self.associatedDisplayPrefsId = display.prefsId
     self.associatedDisplayName = display.name
